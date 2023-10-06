@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Upload an Image</h1>
+    <form action="/process_image" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <input type="submit" value="Upload and Process">
+    </form>
+
+    <div id="image-container" style="display: none;">
+        <h2>Processed Image:</h2>
+        <img id="processed-image" src="#" alt="Processed Image" style="max-width: 300px;">
+        <p>Predicted Class: <span id="predicted-class"></span></p>
+        <p>Probability: <span id="probability"></span></p>
+    </div>
+
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('processed-image');
+            var container = document.getElementById('image-container');
+            var predictedClass = document.getElementById('predicted-class');
+            var probability = document.getElementById('probability');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    container.style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '';
+                container.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+    <!-- <title>Image Upload</title> -->
+<!-- </head> -->
+<!-- <body> -->
+    <!-- <h1>Upload an Image</h1> -->
+    <!-- <form action="/process_image" method="POST" enctype="multipart/form-data"> -->
+        <!-- <input type="file" name="image" accept="image/*"> -->
+        <!-- <input type="submit" value="Upload and Process"> -->
+    <!-- </form> -->
+
+    <!-- <div id="image-container" style="display: none;"> -->
+        <!-- <h2>Processed Image:</h2> -->
+        <!-- <img id="processed-image" src="#" alt="Processed Image" style="max-width: 300px;"> -->
+        <!-- <p>Predicted Class: <span id="predicted-class"></span></p> -->
+        <!-- <p>Probability: <span id="probability"></span></p> -->
+    <!-- </div> -->
+
+    <!-- <script> -->
+        <!-- function previewImage(input) { -->
+            <!-- var preview = document.getElementById('processed-image'); -->
+            <!-- var container = document.getElementById('image-container'); -->
+            <!-- var predictedClass = document.getElementById('predicted-class'); -->
+            <!-- var probability = document.getElementById('probability'); -->
+
+            <!-- if (input.files && input.files[0]) { -->
+                <!-- var reader = new FileReader(); -->
+                <!-- reader.onload = function (e) { -->
+                    <!-- preview.src = e.target.result; -->
+                <!-- }; -->
+                <!-- reader.readAsDataURL(input.files[0]); -->
+            <!-- } else { -->
+                <!-- preview.src = ''; -->
+            <!-- } -->
+
+            <!-- // Hide the image container initially -->
+            <!-- container.style.display = 'none'; -->
+        <!-- } -->
+    <!-- </script> -->
+<!-- </body> -->
+<!-- </html> -->
